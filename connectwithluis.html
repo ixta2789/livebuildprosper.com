@@ -90,6 +90,9 @@
     margin-top:5rem;
     position:relative;
     z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
   }
 
   /* HEADER */
@@ -127,11 +130,17 @@
     margin-bottom:3rem;
   }
 
-  /* BOOKING CARDS */
+  .booking-section{
+    padding:2.5rem 0;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
   .booking-grid{
     display:flex;
     flex-direction:column;
     gap:1.2rem;
+    width:100%;
   }
   .booking-card{
     display:block;
@@ -142,6 +151,7 @@
     position:relative;
     overflow:hidden;
     transition:border-color 0.3s, transform 0.3s;
+    text-align:left;
   }
   .booking-card:hover{
     border-color:var(--gold);
@@ -192,6 +202,7 @@
     align-items:center;
     gap:0.5rem;
     font-weight:500;
+    margin-top:1.5rem;
   }
   .booking-cta::after{
     content:'→';
