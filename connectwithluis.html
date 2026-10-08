@@ -121,15 +121,8 @@
     background:var(--border-gold);
     margin:1.5rem 0;
   }
-  .page-sub{
-    font-family:var(--sans);
-    font-size:0.92rem;
-    color:var(--text-mid);
-    line-height:1.8;
-    font-weight:400;
-    margin-bottom:3rem;
-  }
 
+  /* BOOKING CARDS */
   .booking-section{
     display:flex;
     flex-direction:column;
@@ -206,52 +199,20 @@
     font-weight:500;
     margin-top:1.5rem;
   }
-  .booking-cta::after{
-    content:'→';
-    transition:transform 0.3s;
-  }
-  .booking-card:hover .booking-cta::after{transform:translateX(4px);}
+  .booking-card:hover .booking-cta{opacity:0.8;}
 
   /* FOOTER */
   footer{
-    margin-top:4rem;
-    padding-top:2rem;
-    border-top:1px solid var(--border-gold);
+    margin-top:2rem;
     width:100%;
     max-width:680px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
     position:relative;
     z-index:1;
   }
-  .footer-brand{
-    font-family:var(--sans);
-    font-size:0.7rem;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    color:var(--gold);
-    font-weight:500;
-  }
-  .footer-contact{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:0.3rem;
-  }
-  .footer-contact a{
-    font-family:var(--sans);
-    font-size:0.75rem;
-    color:var(--text-mid);
-    text-decoration:none;
-    transition:color 0.3s;
-  }
-  .footer-contact a:hover{color:var(--gold);}
 
   @media(max-width:600px){
     nav{padding:1rem 1.5rem;}
-    footer{flex-direction:column;gap:1rem;text-align:center;}
-    .footer-contact{align-items:center;}
+    .booking-section{height:auto;}
   }
 </style>
 </head>
@@ -267,19 +228,29 @@
   <h1 class="page-title">Connect With <em>Luis</em></h1>
   <div class="page-rule"></div>
 
+  <div class="booking-section">
+    <div class="booking-grid">
 
-  <div class="booking-grid">
-    <a href="https://calendar.app.google/muBBixVnXTbsSbe78" target="_blank" class="booking-card">
-      <p class="booking-duration">15 Minutes</p>
-      <h2 class="booking-title">Quick Connect</h2>
-      <p class="booking-desc">A focused intro call to understand where you are and whether there's a fit. No agenda beyond getting clarity on your situation and what we can do to help.</p>
-      <span class="booking-cta">Book This Session</span>
-    </a>
+      <a href="https://calendar.app.google/muBBixVnXTbsSbe78" target="_blank" class="booking-card">
+        <p class="booking-duration">15 Minutes</p>
+        <h2 class="booking-title">Quick Connect</h2>
+        <p class="booking-desc">A focused intro call to understand your current situation and if there's a fit. The primary goal is to get clarity on where you are and what we can do to help.</p>
+        <span class="booking-cta">Book This Session →</span>
+      </a>
+
+      <a href="https://calendar.app.google/muBBixVnXTbsSbe78" target="_blank" class="booking-card">
+        <p class="booking-duration">15 Minutos</p>
+        <h2 class="booking-title">Conversación Inicial</h2>
+        <p class="booking-desc">Una llamada enfocada para entender su situación actual y si hay compatibilidad. El objetivo principal es tener claridad sobre dónde está usted y lo que podemos hacer para ayudarle.</p>
+        <span class="booking-cta">Reserve su Llamada →</span>
+      </a>
+
+    </div>
   </div>
+  <div class="page-rule"></div>
 </main>
 
-<footer>
-</footer>
+<footer></footer>
 
 </body>
 </html>
