@@ -73,15 +73,15 @@
   .hero-image-frame::after{content:'';position:absolute;top:0;left:0;width:30%;height:100%;background:linear-gradient(to right,rgba(10,22,40,0.85),transparent);pointer-events:none;}
 
   /* SERVICES */
-  #services{background:var(--navy2);border-top:1px solid var(--border-gold);border-bottom:1px solid var(--border-gold);}
+  #services{background:var(--navy);border-top:1px solid var(--border-gold);border-bottom:1px solid var(--border-gold);}
   .services-intro{font-family:var(--sans);font-size:0.95rem;color:var(--text-mid);max-width:580px;line-height:1.85;margin-bottom:3.5rem;font-weight:400;}
   .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-gold);}
-  .service-card{background:var(--navy2);padding:2.5rem 2rem;transition:background 0.3s;position:relative;overflow:hidden;}
+  .service-card{background:var(--navy);padding:2.5rem 2rem;transition:background 0.3s;position:relative;overflow:hidden;}
   .service-card:hover{background:var(--charcoal);}
   .service-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.4s;}
   .service-card:hover::after{width:100%;}
   .service-num{font-family:var(--sans);font-size:1.1rem;letter-spacing:0.22em;color:var(--gold);opacity:0.8;margin-bottom:1.2rem;font-weight:600;}
-  .service-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--offwhite);margin-bottom:1rem;line-height:1.2;}
+  .service-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--offwhite);margin-bottom:1rem;line-height:1.2;min-height:3.6rem;}
   .service-desc{font-family:var(--sans);font-size:0.87rem;color:var(--text-mid);line-height:1.85;margin-bottom:1.8rem;font-weight:400;}
   .service-list{list-style:none;}
   .service-list li{font-family:var(--sans);font-size:0.82rem;color:var(--text-mid);padding:0.45rem 0;padding-left:1.2rem;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);font-weight:400;}
@@ -89,9 +89,9 @@
   .service-list li::before{content:'—';position:absolute;left:0;color:var(--gold);}
 
   /* WHO I WORK WITH */
-  #who{background:var(--navy);border-bottom:1px solid var(--border-gold);}
+  #who{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
   .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-gold);margin-top:3rem;}
-  .who-card{background:var(--navy);padding:2.5rem 2.5rem;transition:background 0.3s;}
+  .who-card{background:var(--navy2);padding:2.5rem 2.5rem;transition:background 0.3s;}
   .who-card:hover{background:var(--navy3);}
   .who-card-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--gold);margin-bottom:0.8rem;}
   .who-card-desc{font-family:var(--sans);font-size:0.88rem;color:var(--text-mid);line-height:1.85;font-weight:400;}
@@ -101,7 +101,7 @@
   #process{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
   .process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-gold);margin-top:3rem;}
   .step{background:var(--navy2);padding:2.5rem 2rem;position:relative;}
-  .step-num{font-family:var(--serif);font-size:3.5rem;font-weight:300;color:var(--gold);opacity:0.45;line-height:1;margin-bottom:1rem;}
+  .step-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold);opacity:0.45;line-height:1;margin-bottom:1rem;}
   .step-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--offwhite);margin-bottom:0.8rem;}
   .step-desc{font-family:var(--sans);font-size:0.87rem;color:var(--text-mid);line-height:1.85;font-weight:400;}
 
@@ -253,12 +253,12 @@
       <div class="step">
         <div class="step-num">01</div>
         <h3 class="step-title">Discovery Call</h3>
-        <p class="step-desc">We start with a direct conversation about where you are financially and where you want to go. No pitch. No pressure. Just an honest assessment of whether we're a fit.</p>
+        <p class="step-desc">We start with a direct conversation about where you are financially and where you want to go. No pitch, just an honest assessment of whether we're a fit.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3 class="step-title">Custom Strategy</h3>
-        <p class="step-desc">I build a plan tailored to your income, your debt, your tax situation, and your timeline. Not a template — a strategy built around your specific numbers and goals.</p>
+        <h3 class="step-title">Personalized Strategy Plan</h3>
+        <p class="step-desc">The data we gather helps us determine which strategies will offer the best solutions for your situation. We review the options with you and your CPA and you select the strategies that best fit your goals.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
