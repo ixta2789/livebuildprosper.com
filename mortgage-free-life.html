@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Mortgage Free Life · Live. Build. Prosper. LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%230a1628' stroke='%23c9a84c' stroke-width='1'/><text x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-size='13' fill='%23c9a84c'>LBP</text></svg>">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --navy:#0a1628;
+    --navy2:#0f1f3d;
+    --navy3:#0d1a33;
+    --charcoal:#1a1f2e;
+    --gold:#c9a84c;
+    --offwhite:#f5f2ec;
+    --text-muted:#6a7490;
+    --text-light:#a8b0c8;
+    --text-mid:#c8ccdb;
+    --border:#1e2d4a;
+    --border-gold:rgba(201,168,76,0.45);
+    --sans:'Sora',sans-serif;
+    --serif:'Raleway',sans-serif;
+  }
+  html{scroll-behavior:smooth;}
+  body{background:var(--navy);color:var(--offwhite);font-family:var(--sans);line-height:1.7;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,22,40,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,168,76,0.12);}
+  .nav-brand{font-family:var(--sans);font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;white-space:nowrap;}
+  .nav-back{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);text-decoration:none;transition:color 0.3s;font-weight:400;}
+  .nav-back:hover{color:var(--gold);}
+
+  section{padding:7rem 3rem;}
+  .container{max-width:1100px;margin:0 auto;padding-left:2rem;}
+
+  .section-eyebrow{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0.9;font-weight:500;}
+  .section-title{font-family:var(--serif);font-size:clamp(2rem,3.2vw,2.85rem);font-weight:300;line-height:1.15;color:var(--offwhite);margin-bottom:1.5rem;}
+  .section-rule{width:100%;height:1px;background:var(--border-gold);margin-bottom:2.5rem;}
+
+  /* HERO */
+  #hero{min-height:75vh;display:flex;align-items:center;padding-top:7rem;background:linear-gradient(150deg,var(--navy) 55%,var(--navy3) 100%);position:relative;overflow:hidden;border-bottom:1px solid var(--border-gold);}
+  #hero::before{content:'';position:absolute;top:0;right:0;width:48%;height:100%;background:radial-gradient(ellipse at 80% 40%,rgba(201,168,76,0.06) 0%,transparent 65%);}
+  .hero-inner{position:relative;z-index:1;max-width:680px;}
+  .hero-rule{width:100%;height:1px;background:var(--gold);opacity:0.45;margin:1.5rem 0;}
+  .hero-sub{font-family:var(--sans);font-size:0.98rem;color:var(--text-mid);line-height:1.85;max-width:540px;margin-bottom:2rem;font-weight:400;}
+  .btn-primary{display:inline-block;padding:0.85rem 2.4rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-family:var(--sans);font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;transition:all 0.3s;font-weight:500;}
+  .btn-primary:hover{background:var(--gold);color:var(--navy);}
+
+  /* WHAT IT IS */
+  #what{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
+  .what-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:2rem;}
+  .what-body{font-family:var(--sans);font-size:0.95rem;color:var(--text-mid);line-height:1.9;font-weight:400;}
+  .what-body p+p{margin-top:1.2rem;}
+  .stat-stack{display:flex;flex-direction:column;gap:1.5rem;padding:2.5rem;border:1px solid var(--border-gold);}
+  .stat-item{}
+  .stat-num{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1;display:block;margin-bottom:0.3rem;}
+  .stat-label{font-family:var(--sans);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);font-weight:400;}
+
+  /* HOW IT WORKS */
+  #how{background:var(--navy);border-bottom:1px solid var(--border-gold);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-gold);margin-top:2.5rem;}
+  .step{background:var(--navy);padding:2.5rem 2rem;}
+  .step-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold);opacity:0.45;line-height:1;margin-bottom:1rem;}
+  .step-title{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--offwhite);margin-bottom:0.7rem;}
+  .step-desc{font-family:var(--sans);font-size:0.87rem;color:var(--text-mid);line-height:1.85;font-weight:400;}
+
+  /* WHO IT'S FOR */
+  #who{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
+  .who-list{margin-top:2rem;display:flex;flex-direction:column;gap:0;border:1px solid var(--border-gold);}
+  .who-item{padding:1.5rem 2rem;border-bottom:1px solid var(--border-gold);font-family:var(--sans);font-size:0.92rem;color:var(--text-mid);line-height:1.75;font-weight:400;display:flex;gap:1rem;align-items:baseline;}
+  .who-item:last-child{border-bottom:none;}
+  .who-item::before{content:'—';color:var(--gold);flex-shrink:0;}
+
+  /* CTA */
+  #cta{background:var(--navy);border-bottom:1px solid var(--border-gold);}
+  .cta-inner{max-width:620px;}
+  .cta-title{font-family:var(--serif);font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:300;color:var(--offwhite);margin-bottom:1rem;line-height:1.2;}
+  .cta-sub{font-family:var(--sans);font-size:0.95rem;color:var(--text-mid);line-height:1.85;margin-bottom:2rem;font-weight:400;}
+
+  /* FOOTER */
+  footer{background:var(--charcoal);padding:2rem 3rem;border-top:1px solid var(--border-gold);}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap;}
+  .footer-brand{font-family:var(--sans);font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .footer-copy{font-family:var(--sans);font-size:0.7rem;color:var(--text-muted);}
+  .footer-disclosure{font-family:var(--sans);font-size:0.68rem;color:var(--text-muted);line-height:1.7;max-width:680px;margin-top:1rem;}
+  .footer-link{font-family:var(--sans);font-size:0.7rem;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+  .footer-link:hover{color:var(--gold);}
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;}
+    section{padding:4rem 1.5rem;}
+    .container{padding-left:0;}
+    .section-title{font-size:1.8rem;}
+    .what-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .footer-inner{flex-direction:column;gap:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Live. Build. Prosper. LLC</div>
+  <a href="/" class="nav-back">← Main Site</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <p class="section-eyebrow">Mortgage Free Life</p>
+      <h1 class="section-title">What if your mortgage was paid off in 7 years?</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">Most homeowners will spend 30 years paying off their mortgage — and a significant portion of what they pay never reduces the principal. There's a strategy that changes that. Most people don't know it exists.</p>
+      <a href="/connectwithluis.html" class="btn-primary">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section id="what">
+  <div class="container">
+    <p class="section-eyebrow">What It Is</p>
+    <h2 class="section-title">A different way to approach your mortgage</h2>
+    <div class="section-rule"></div>
+    <div class="what-grid">
+      <div class="what-body">
+        <p>The traditional mortgage model is built around 360 monthly payments. That structure benefits the lender far more than it benefits you — the bulk of your early payments go toward interest, not equity.</p>
+        <p>The Mortgage Free Life strategy uses a specific financial structure to redirect cash flow and dramatically accelerate your payoff timeline. Done correctly, most homeowners can eliminate their mortgage in 5 to 7 years — and in doing so, recapture hundreds of thousands of dollars in interest that would have otherwise left permanently.</p>
+        <p>This isn't a refinance. It doesn't require extra income. And it doesn't involve giving up liquidity. It's a restructuring of how your existing money moves.</p>
+      </div>
+      <div class="stat-stack">
+        <div class="stat-item">
+          <span class="stat-num">5–7</span>
+          <span class="stat-label">Years to payoff vs. 30</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">6-figure</span>
+          <span class="stat-label">Interest recaptured on a typical mortgage</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">$0</span>
+          <span class="stat-label">Additional income required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title">The process</h2>
+    <div class="section-rule"></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Review Your Current Situation</h3>
+        <p class="step-desc">We start by looking at your mortgage balance, rate, and cash flow. A 15-minute conversation is usually enough to determine if the strategy is a fit.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Build the Structure</h3>
+        <p class="step-desc">We design the financial structure around your existing income and expenses. You see the numbers — your payoff timeline, your projected interest savings — before committing to anything.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Implement & Monitor</h3>
+        <p class="step-desc">Once you move forward, we implement together and track the progress. The structure adjusts as your financial picture changes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="who">
+  <div class="container">
+    <p class="section-eyebrow">Who It's For</p>
+    <h2 class="section-title">This works best when</h2>
+    <div class="section-rule"></div>
+    <div class="who-list">
+      <div class="who-item">You have an existing mortgage and want to pay it off significantly faster without refinancing</div>
+      <div class="who-item">You're a W-2 earner or business owner with steady, predictable cash flow</div>
+      <div class="who-item">You're tired of watching a large portion of each payment go toward interest rather than equity</div>
+      <div class="who-item">You want to build equity faster and free up cash flow for other goals — retirement, investment, or just financial breathing room</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <p class="section-eyebrow">Next Step</p>
+      <h2 class="cta-title">See if the numbers work for you</h2>
+      <div class="section-rule"></div>
+      <p class="cta-sub">A short conversation is enough to run the numbers on your situation. If it's not a fit, we'll tell you directly. If it is, you'll leave with a clear picture of what's possible.</p>
+      <a href="/connectwithluis.html" class="btn-primary">Book a Call with Luis</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="footer-brand">Live. Build. Prosper. LLC</span><br><br>
+      <span class="footer-copy">© 2026 Luis Andres Ixta · All rights reserved</span>
+    </div>
+    <a href="https://luisandresixta.com" class="footer-link">luisandresixta.com →</a>
+  </div>
+  <div style="max-width:1100px;margin:1.5rem auto 0;padding-left:2rem;">
+    <p class="footer-disclosure">Live. Build. Prosper. LLC provides education and consulting on tax mitigation strategies. We do not provide tax, legal, accounting, or investment advice, are not a CPA firm, and do not prepare or file tax returns. Strategies are reviewed with your own tax and legal professionals and, where applicable, implemented through a network of independent licensed professionals. Insurance products are offered through licensed insurance agents. CA License #[ ] · NPN #[ ]. Content on this site is for educational purposes only. Examples shown are anonymized and illustrative; results are not guaranteed and will vary based on individual circumstances.</p>
+  </div>
+</footer>
+
+</body>
+</html>
