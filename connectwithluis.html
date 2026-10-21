@@ -169,12 +169,9 @@
   .cards-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    align-items:stretch;
+    align-items:start;
     gap:1.5rem;
     margin-bottom:3rem;
-  }
-  .cards-grid > .lane-card{
-    height:100%;
   }
 
   /* LANE CARD */
@@ -210,12 +207,17 @@
   .lane-card--quiet::before{background:rgba(201,168,76,0.5);}
 
   .card-header{
-    padding:1.8rem 1.8rem 1.2rem;
-    border-bottom:1px solid var(--border-gold);
-    min-height:13rem;
+    padding:1.8rem 1.8rem 3.2rem;
+    border-bottom:none;
+    height:16rem;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
+    position:relative;
+  }
+  .lane-card.open .card-header{
+    border-bottom:1px solid var(--border-gold);
+    height:16rem;
   }
   .card-duration{
     font-family:var(--sans);
@@ -344,6 +346,66 @@
   }
   .confirm-note.visible{display:block;}
 
+  /* COLLAPSIBLE CARDS */
+  .card-header{
+    cursor:pointer;
+    user-select:none;
+  }
+  .card-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:1.6rem;
+    height:1.6rem;
+    position:absolute;
+    bottom:1.2rem;
+    left:1.8rem;
+    border:1px solid var(--border-gold);
+    color:var(--gold);
+    font-size:1rem;
+    font-weight:300;
+    line-height:1;
+    font-family:var(--sans);
+    transition:background 0.2s, color 0.2s;
+    flex-shrink:0;
+  }
+  .lane-card.open .card-toggle{
+    background:var(--gold);
+    color:var(--navy);
+  }
+  .card-body{
+    display:none;
+    flex-direction:column;
+  }
+  .lane-card.open .card-body{
+    display:flex;
+  }
+
+  /* VALIDATION */
+  .validation-msg{
+    font-family:var(--sans);
+    font-size:0.75rem;
+    color:#e07070;
+    margin-bottom:0.5rem;
+    display:none;
+  }
+  .validation-msg.visible{display:block;}
+
+  /* PRIVACY NOTE */
+  .privacy-note{
+    font-family:var(--sans);
+    font-size:0.72rem;
+    color:var(--text-muted);
+    line-height:1.6;
+    padding:0.5rem 0 0;
+  }
+  .privacy-note a{
+    color:var(--text-light);
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .privacy-note a:hover{color:var(--gold);}
+
   /* FOOTER */
   footer{
     margin-top:1rem;
@@ -364,8 +426,8 @@
   .footer-copy{font-family:var(--sans);font-size:0.7rem;color:var(--text-muted);}
   .footer-disclosure{
     font-family:var(--sans);
-    font-size:0.68rem;
-    color:var(--text-muted);
+    font-size:0.78rem;
+    color:var(--text-light);
     line-height:1.7;
     border-top:1px solid rgba(201,168,76,0.12);
     padding-top:1rem;
@@ -430,7 +492,7 @@ const T = {
     c2_promise:  "Explore how we can work together.",
     c2_intro:    "Thanks for your interest. A few details help me make the call relevant to you.",
     c2_q1_label: "Name of your firm and your role",
-    c2_q1_ph:    "e.g. Smith CPA · Senior Manager",
+    c2_q1_ph:    "Smith CPA · Partner",
     c2_q2_label: "What kinds of clients do you mainly serve?",
     c2_q2_ph:    "",
     c2_q3_label: "What would you most like to learn from our conversation?",
@@ -500,7 +562,7 @@ const T = {
     c2_promise:  "Exploremos cómo podemos trabajar juntos.",
     c2_intro:    "Gracias por su interés. Algunos detalles me ayudan a hacer la llamada más relevante para usted.",
     c2_q1_label: "Nombre de su firma y su rol",
-    c2_q1_ph:    "p.ej. Smith CPA · Gerente Senior",
+    c2_q1_ph:    "Smith CPA · Socio",
     c2_q2_label: "¿A qué tipo de clientes atiende principalmente?",
     c2_q2_ph:    "",
     c2_q3_label: "¿Qué le gustaría aprender de nuestra conversación?",
@@ -571,126 +633,140 @@ const T = {
   <div class="cards-grid">
 
     <!-- ── CARD 1: BUSINESS OWNERS ── -->
-    <div class="lane-card">
-      <div class="card-header">
+    <div class="lane-card" id="card1">
+      <div class="card-header" onclick="toggleCard('card1')" role="button" aria-expanded="false" aria-controls="card1-body">
         <p class="card-duration" data-i18n="c1_duration">15 Minutes</p>
         <h2 class="card-title" data-i18n="c1_title">Business Owners &amp; High-Income Professionals</h2>
         <p class="card-promise" data-i18n="c1_promise">Understand how your income, taxes, and long-term plans fit together.</p>
+        <span class="card-toggle" aria-hidden="true">+</span>
       </div>
-      <div class="card-intake">
-        <p class="intake-intro" data-i18n="c1_intro">A few quick questions so our 15 minutes are as useful as possible. Your answers are only used to prepare for our call.</p>
-        <div class="intake-field">
-          <label class="intake-label" for="c1q1" data-i18n="c1_q1_label">Which best describes you?</label>
-          <div class="select-wrap">
-            <select class="intake-select" id="c1q1">
-              <option value="" data-i18n="c1_q1_ph">Select one</option>
-              <option value="owner" data-i18n="c1_q1_o1">Business owner</option>
-              <option value="w2" data-i18n="c1_q1_o2">W-2 professional</option>
-              <option value="both" data-i18n="c1_q1_o3">Both</option>
-            </select>
+      <div class="card-body" id="card1-body">
+        <div class="card-intake">
+          <p class="intake-intro" data-i18n="c1_intro">A few quick questions so our 15 minutes are as useful as possible. Your answers are only used to prepare for our call.</p>
+          <div class="intake-field">
+            <label class="intake-label" for="c1q1" data-i18n="c1_q1_label">Which best describes you?</label>
+            <div class="select-wrap">
+              <select class="intake-select" id="c1q1" required>
+                <option value="" data-i18n="c1_q1_ph">Select one</option>
+                <option value="owner" data-i18n="c1_q1_o1">Business owner</option>
+                <option value="w2" data-i18n="c1_q1_o2">W-2 professional</option>
+                <option value="both" data-i18n="c1_q1_o3">Both</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c1q2" data-i18n="c1_q2_label">Approximate annual income or business revenue?</label>
-          <div class="select-wrap">
-            <select class="intake-select" id="c1q2">
-              <option value="" data-i18n="c1_q2_ph">Select a range</option>
-              <option value="u350" data-i18n="c1_q2_o1">Under $350K</option>
-              <option value="350-750" data-i18n="c1_q2_o2">$350K–$750K</option>
-              <option value="750-2m" data-i18n="c1_q2_o3">$750K–$2M</option>
-              <option value="2m+" data-i18n="c1_q2_o4">$2M+</option>
-            </select>
+          <div class="intake-field">
+            <label class="intake-label" for="c1q2" data-i18n="c1_q2_label">Approximate annual income or business revenue?</label>
+            <div class="select-wrap">
+              <select class="intake-select" id="c1q2" required>
+                <option value="" data-i18n="c1_q2_ph">Select a range</option>
+                <option value="u350" data-i18n="c1_q2_o1">Under $350K</option>
+                <option value="350-750" data-i18n="c1_q2_o2">$350K–$750K</option>
+                <option value="750-2m" data-i18n="c1_q2_o3">$750K–$2M</option>
+                <option value="2m+" data-i18n="c1_q2_o4">$2M+</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c1q3" data-i18n="c1_q3_label">Do you currently work with a CPA or tax professional?</label>
-          <div class="select-wrap">
-            <select class="intake-select" id="c1q3">
-              <option value="" data-i18n="c1_q3_ph">Select one</option>
-              <option value="yes" data-i18n="c1_q3_o1">Yes</option>
-              <option value="no" data-i18n="c1_q3_o2">No</option>
-              <option value="notsure" data-i18n="c1_q3_o3">Not sure</option>
-            </select>
+          <div class="intake-field">
+            <label class="intake-label" for="c1q3" data-i18n="c1_q3_label">Do you currently work with a CPA or tax professional?</label>
+            <div class="select-wrap">
+              <select class="intake-select" id="c1q3" required>
+                <option value="" data-i18n="c1_q3_ph">Select one</option>
+                <option value="yes" data-i18n="c1_q3_o1">Yes</option>
+                <option value="no" data-i18n="c1_q3_o2">No</option>
+                <option value="notsure" data-i18n="c1_q3_o3">Not sure</option>
+              </select>
+            </div>
           </div>
+          <div class="intake-field">
+            <label class="intake-label" for="c1q4"><span data-i18n="c1_q4_label">What prompted you to reach out?</span> <span class="optional">(optional)</span></label>
+            <input class="intake-input" id="c1q4" type="text" data-i18n-placeholder="c1_q4_ph" placeholder="Optional"/>
+          </div>
+          <p class="privacy-note">Income ranges collected are used solely to prepare for your call and are never sold or shared with third parties.</p>
         </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c1q4"><span data-i18n="c1_q4_label">What prompted you to reach out?</span> <span class="optional">(optional)</span></label>
-          <input class="intake-input" id="c1q4" type="text" data-i18n-placeholder="c1_q4_ph" placeholder="Optional"/>
+        <div class="card-footer">
+          <p class="validation-msg" id="c1-validation">Please answer all required questions before scheduling.</p>
+          <button class="card-book-btn" id="c1-btn" data-i18n="c1_btn" onclick="bookOwner()">Schedule →</button>
+          <p class="confirm-note" id="c1-confirm" data-i18n="c1_confirm">You're confirmed. We'll spend 15 minutes on where you are and whether there's a fit. No preparation needed and no pitch. If it makes sense to continue, the next step is a longer strategy session.</p>
         </div>
-      </div>
-      <div class="card-footer">
-        <button class="card-book-btn" id="c1-btn" data-i18n="c1_btn" onclick="bookOwner()">Schedule →</button>
-        <p class="confirm-note" id="c1-confirm" data-i18n="c1_confirm">You're confirmed. We'll spend 15 minutes on where you are and whether there's a fit. No preparation needed and no pitch. If it makes sense to continue, the next step is a longer strategy session.</p>
       </div>
     </div>
 
     <!-- ── CARD 2: CPAs & ADVISORS ── -->
-    <div class="lane-card">
-      <div class="card-header">
+    <div class="lane-card" id="card2">
+      <div class="card-header" onclick="toggleCard('card2')" role="button" aria-expanded="false" aria-controls="card2-body">
         <p class="card-duration" data-i18n="c2_duration">15 Minutes</p>
         <h2 class="card-title" data-i18n="c2_title">CPAs &amp; Advisors</h2>
         <p class="card-promise" data-i18n="c2_promise">Explore how we can work together.</p>
+        <span class="card-toggle" aria-hidden="true">+</span>
       </div>
-      <div class="card-intake">
-        <p class="intake-intro" data-i18n="c2_intro">Thanks for your interest. A few details help me make the call relevant to you.</p>
-        <div class="intake-field">
-          <label class="intake-label" for="c2q1" data-i18n="c2_q1_label">Name of your firm and your role</label>
-          <input class="intake-input" id="c2q1" type="text" data-i18n-placeholder="c2_q1_ph" placeholder="e.g. Smith CPA · Senior Manager"/>
+      <div class="card-body" id="card2-body">
+        <div class="card-intake">
+          <p class="intake-intro" data-i18n="c2_intro">Thanks for your interest. A few details help me make the call relevant to you.</p>
+          <div class="intake-field">
+            <label class="intake-label" for="c2q1" data-i18n="c2_q1_label">Name of your firm and your role</label>
+            <input class="intake-input" id="c2q1" type="text" data-i18n-placeholder="c2_q1_ph" placeholder="Smith CPA · Partner" required/>
+          </div>
+          <div class="intake-field">
+            <label class="intake-label" for="c2q2" data-i18n="c2_q2_label">What kinds of clients do you mainly serve?</label>
+            <input class="intake-input" id="c2q2" type="text" placeholder="" required/>
+          </div>
+          <div class="intake-field">
+            <label class="intake-label" for="c2q3"><span data-i18n="c2_q3_label">What would you most like to learn from our conversation?</span> <span class="optional">(optional)</span></label>
+            <input class="intake-input" id="c2q3" type="text" data-i18n-placeholder="c2_q3_ph" placeholder="Optional"/>
+          </div>
         </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c2q2" data-i18n="c2_q2_label">What kinds of clients do you mainly serve?</label>
-          <input class="intake-input" id="c2q2" type="text" placeholder=""/>
+        <div class="card-footer">
+          <p class="validation-msg" id="c2-validation">Please fill in all required fields before scheduling.</p>
+          <button class="card-book-btn" id="c2-btn" data-i18n="c2_btn" onclick="bookCPA()">Schedule →</button>
+          <p class="confirm-note" id="c2-confirm" data-i18n="c2_confirm">You're confirmed. This is an education conversation about how we work alongside CPAs and advisors, with no obligation and no expectation of referrals either way. Come with questions.</p>
         </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c2q3"><span data-i18n="c2_q3_label">What would you most like to learn from our conversation?</span> <span class="optional">(optional)</span></label>
-          <input class="intake-input" id="c2q3" type="text" data-i18n-placeholder="c2_q3_ph" placeholder="Optional"/>
-        </div>
-      </div>
-      <div class="card-footer">
-        <button class="card-book-btn" id="c2-btn" data-i18n="c2_btn" onclick="bookCPA()">Schedule →</button>
-        <p class="confirm-note" id="c2-confirm" data-i18n="c2_confirm">You're confirmed. This is an education conversation about how we work alongside CPAs and advisors, with no obligation and no expectation of referrals either way. Come with questions.</p>
       </div>
     </div>
 
     <!-- ── CARD 3: HOMEOWNERS (quiet) ── -->
-    <div class="lane-card lane-card--quiet">
-      <div class="card-header">
+    <div class="lane-card" id="card3">
+      <div class="card-header" onclick="toggleCard('card3')" role="button" aria-expanded="false" aria-controls="card3-body">
         <p class="card-duration" data-i18n="c3_duration">15 Minutes</p>
         <h2 class="card-title" data-i18n="c3_title">Homeowners</h2>
-        <p class="card-promise" data-i18n="c3_promise">Learn about our mortgage payoff program.</p>
+        <p class="card-promise" data-i18n="c3_promise">Learn about the Mortgage-Free Life program.</p>
+        <span class="card-toggle" aria-hidden="true">+</span>
       </div>
-      <div class="card-intake">
-        <p class="intake-intro" data-i18n="c3_intro">A few quick questions to prepare for our call. Your answers are only used to prepare for it.</p>
-        <div class="intake-field">
-          <label class="intake-label" for="c3q1" data-i18n="c3_q1_label">Do you own your primary residence?</label>
-          <div class="select-wrap">
-            <select class="intake-select" id="c3q1">
-              <option value="" data-i18n="c3_q1_ph">Select one</option>
-              <option value="yes" data-i18n="c3_q1_o1">Yes</option>
-              <option value="no" data-i18n="c3_q1_o2">No</option>
-            </select>
+      <div class="card-body" id="card3-body">
+        <div class="card-intake">
+          <p class="intake-intro" data-i18n="c3_intro">A few quick questions to prepare for our call. Your answers are only used to prepare for it.</p>
+          <div class="intake-field">
+            <label class="intake-label" for="c3q1" data-i18n="c3_q1_label">Do you own your primary residence?</label>
+            <div class="select-wrap">
+              <select class="intake-select" id="c3q1" required>
+                <option value="" data-i18n="c3_q1_ph">Select one</option>
+                <option value="yes" data-i18n="c3_q1_o1">Yes</option>
+                <option value="no" data-i18n="c3_q1_o2">No</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c3q2" data-i18n="c3_q2_label">Approximate remaining mortgage balance?</label>
-          <div class="select-wrap">
-            <select class="intake-select" id="c3q2">
-              <option value="" data-i18n="c3_q2_ph">Select a range</option>
-              <option value="u250" data-i18n="c3_q2_o1">Under $250K</option>
-              <option value="250-500" data-i18n="c3_q2_o2">$250K–$500K</option>
-              <option value="500-1m" data-i18n="c3_q2_o3">$500K–$1M</option>
-              <option value="1m+" data-i18n="c3_q2_o4">$1M+</option>
-            </select>
+          <div class="intake-field">
+            <label class="intake-label" for="c3q2" data-i18n="c3_q2_label">Approximate remaining mortgage balance?</label>
+            <div class="select-wrap">
+              <select class="intake-select" id="c3q2" required>
+                <option value="" data-i18n="c3_q2_ph">Select a range</option>
+                <option value="u250" data-i18n="c3_q2_o1">Under $250K</option>
+                <option value="250-500" data-i18n="c3_q2_o2">$250K–$500K</option>
+                <option value="500-1m" data-i18n="c3_q2_o3">$500K–$1M</option>
+                <option value="1m+" data-i18n="c3_q2_o4">$1M+</option>
+              </select>
+            </div>
           </div>
+          <div class="intake-field">
+            <label class="intake-label" for="c3q3" data-i18n="c3_q3_label">How did you hear about us?</label>
+            <input class="intake-input" id="c3q3" type="text" placeholder=""/>
+          </div>
+          <p class="privacy-note">Mortgage balance ranges collected are used solely to prepare for your call and are never sold or shared with third parties.</p>
         </div>
-        <div class="intake-field">
-          <label class="intake-label" for="c3q3" data-i18n="c3_q3_label">How did you hear about us?</label>
-          <input class="intake-input" id="c3q3" type="text" placeholder=""/>
+        <div class="card-footer">
+          <p class="validation-msg" id="c3-validation">Please answer all required questions before scheduling.</p>
+          <button class="card-book-btn" id="c3-btn" data-i18n="c3_btn" onclick="bookHomeowner()">Schedule →</button>
+          <p class="confirm-note" id="c3-confirm" data-i18n="c3_confirm">You're confirmed. We'll spend 15 minutes on your situation and whether the program applies. The numbers are specific to your circumstances, so the call is mostly a conversation and a data review.</p>
         </div>
-      </div>
-      <div class="card-footer">
-        <button class="card-book-btn" id="c3-btn" data-i18n="c3_btn" onclick="bookHomeowner()">Schedule →</button>
-        <p class="confirm-note" id="c3-confirm" data-i18n="c3_confirm">You're confirmed. We'll spend 15 minutes on your situation and whether the program applies. The numbers are specific to your circumstances, so the call is mostly a conversation and a data review.</p>
       </div>
     </div>
 
@@ -754,6 +830,17 @@ function setLang(lang){
   applyLang(lang);
 }
 
+// ─── COLLAPSIBLE CARDS ───────────────────────────────────────────────────────
+function toggleCard(id){
+  const card = document.getElementById(id);
+  const header = card.querySelector('.card-header');
+  const toggle = card.querySelector('.card-toggle');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  header.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+  if(toggle) toggle.textContent = !isOpen ? '−' : '+';
+}
+
 // ─── TAX STRATEGY BOOKING ────────────────────────────────────────────────────
 const OWNER_URL = "https://calendar.app.google/3LPomzbpTqHFgvQH8";
 
@@ -762,6 +849,13 @@ function bookOwner(){
   const income  = document.getElementById('c1q2').value;
   const cpa     = document.getElementById('c1q3').value;
   const prompt  = document.getElementById('c1q4').value.trim();
+  const validMsg = document.getElementById('c1-validation');
+
+  if(!role || !income || !cpa){
+    validMsg.classList.add('visible');
+    return;
+  }
+  validMsg.classList.remove('visible');
 
   const lang = document.documentElement.getAttribute('data-lang') || 'en';
   const t = T[lang];
@@ -785,9 +879,16 @@ function bookOwner(){
 const CPA_URL = "https://calendar.app.google/U4NpXupni6oZQvk66";
 
 function bookCPA(){
-  const firm  = document.getElementById('c2q1').value.trim();
+  const firm    = document.getElementById('c2q1').value.trim();
   const clients = document.getElementById('c2q2').value.trim();
-  const learn = document.getElementById('c2q3').value.trim();
+  const learn   = document.getElementById('c2q3').value.trim();
+  const validMsg = document.getElementById('c2-validation');
+
+  if(!firm || !clients){
+    validMsg.classList.add('visible');
+    return;
+  }
+  validMsg.classList.remove('visible');
 
   const notes = [
     'Firm / Role: '    + (firm    || '—'),
@@ -806,11 +907,17 @@ function bookHomeowner(){
   const owns    = document.getElementById('c3q1').value;
   const balance = document.getElementById('c3q2').value;
   const referral= document.getElementById('c3q3').value.trim();
+  const validMsg = document.getElementById('c3-validation');
+
+  if(!owns || !balance){
+    validMsg.classList.add('visible');
+    return;
+  }
+  validMsg.classList.remove('visible');
 
   const lang = document.documentElement.getAttribute('data-lang') || 'en';
   const t = T[lang];
 
-  // Build readable labels from select values
   const ownsMap = { yes: t.c3_q1_o1, no: t.c3_q1_o2, '': '—' };
   const balMap  = { u250: t.c3_q2_o1, '250-500': t.c3_q2_o2, '500-1m': t.c3_q2_o3, '1m+': t.c3_q2_o4, '': '—' };
 
