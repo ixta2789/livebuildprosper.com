@@ -43,7 +43,6 @@
 
   /* SECTION ACCENT */
   .section-accent{position:relative;overflow:hidden;}
-  .section-accent::after{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:radial-gradient(ellipse at 85% 30%,rgba(201,168,76,0.04) 0%,transparent 65%);pointer-events:none;}
 
   /* LABELS */
   .section-eyebrow{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500;}
@@ -53,7 +52,6 @@
 
   /* HERO */
   #hero{min-height:100vh;display:flex;align-items:center;padding-top:7rem;background:linear-gradient(150deg,var(--navy) 55%,var(--navy3) 100%);position:relative;overflow:hidden;border-bottom:1px solid var(--border-gold);}
-  #hero::before{content:'';position:absolute;top:0;right:0;width:48%;height:100%;background:radial-gradient(ellipse at 80% 40%,rgba(201,168,76,0.06) 0%,transparent 65%);}
   .hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:center;width:100%;position:relative;z-index:1;}
   .hero-eyebrow{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;font-weight:500;}
   .hero-title{font-family:var(--serif);font-size:clamp(2.05rem,3.85vw,3.42rem);font-weight:300;line-height:1.1;color:var(--offwhite);margin-bottom:0.5rem;}
@@ -130,7 +128,7 @@
 
   /* CONTACT */
   #contact{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
-  .contact-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:center;}
+  .contact-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:start;}
   .contact-stats{display:flex;flex-direction:column;gap:1rem;margin:2rem 0;}
   .contact-stat{display:flex;align-items:baseline;gap:0.75rem;}
   .contact-stat-num{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--gold);white-space:nowrap;}
@@ -185,7 +183,7 @@
         <p style="font-family:var(--sans);font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1rem;">Tax Strategy · For business owners &amp; high earners</p>
         <p class="hero-brand">Earning more was<br>never the hard part.</p>
         <div class="hero-rule" style="max-width:600px;"></div>
-        <p class="hero-sub">You worked hard and the results speak for themselves. The shift comes in keeping a larger portion of what you're already earning, instead of continuing to grind simply to get a bigger piece of the pie. Keep more of what you earned to build a prosperous future.</p>
+        <p class="hero-sub">You worked hard and the results speak for themselves. The shift comes in keeping a larger portion of what you already make, instead of continuing to grind simply to get a bigger piece of the pie. Keep more of what you earned to build a prosperous future.</p>
         <a href="/connectwithluis.html" class="btn-primary">Start a Conversation</a>
       </div>
     </div>
