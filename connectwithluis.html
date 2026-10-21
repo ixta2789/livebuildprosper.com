@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Connect With Luis · Live. Build. Prosper. LLC</title>
+<title data-i18n="page_title">Connect With Luis · Live. Build. Prosper. LLC</title>
+<meta name="description" data-i18n="page_desc" content="Schedule a conversation with Luis Andres Ixta — tax strategy, business exits, and retirement for business owners and high earners."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%230a1628' stroke='%23c9a84c' stroke-width='1'/><text x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-size='13' fill='%23c9a84c'>LBP</text></svg>">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -18,9 +19,10 @@
     --offwhite:#f5f2ec;
     --text-light:#a8b0c8;
     --text-mid:#c8ccdb;
+    --text-muted:#6a7490;
     --border-gold:rgba(201,168,76,0.45);
-    --sans:'Plus Jakarta Sans',sans-serif;
-    --serif:'Cormorant',serif;
+    --sans:'Sora',sans-serif;
+    --serif:'Raleway',sans-serif;
   }
   html{scroll-behavior:smooth;}
   body{
@@ -31,8 +33,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
-    padding:3rem 1.5rem;
+    padding:3rem 1.5rem 4rem;
     position:relative;
     overflow-x:hidden;
   }
@@ -68,6 +69,11 @@
     text-decoration:none;
     white-space:nowrap;
   }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+  }
   .nav-back{
     font-family:var(--sans);
     font-size:0.72rem;
@@ -76,23 +82,54 @@
     color:var(--text-light);
     text-decoration:none;
     transition:color 0.3s;
-    display:flex;
-    align-items:center;
-    gap:0.5rem;
   }
   .nav-back:hover{color:var(--gold);}
-  .nav-back::before{content:'←';}
+
+  /* LANG TOGGLE */
+  .lang-toggle{
+    display:flex;
+    align-items:center;
+    gap:0;
+    border:1px solid var(--border-gold);
+  }
+  .lang-btn{
+    font-family:var(--sans);
+    font-size:0.65rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--text-light);
+    background:transparent;
+    border:none;
+    padding:0.35rem 0.65rem;
+    cursor:pointer;
+    transition:color 0.2s,background 0.2s;
+    line-height:1;
+  }
+  .lang-btn:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+  .lang-btn[aria-pressed="true"]{
+    color:var(--navy);
+    background:var(--gold);
+  }
+  .lang-btn[aria-pressed="false"]:hover{
+    color:var(--gold);
+  }
+  .lang-divider{
+    width:1px;
+    height:1.4rem;
+    background:var(--border-gold);
+  }
 
   /* MAIN */
   main{
     width:100%;
-    max-width:680px;
-    margin-top:5rem;
+    max-width:900px;
+    margin-top:6rem;
     position:relative;
     z-index:1;
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
   }
 
   /* HEADER */
@@ -104,151 +141,705 @@
     color:var(--gold);
     margin-bottom:1rem;
     font-weight:500;
-    opacity:0.9;
   }
   .page-title{
     font-family:var(--serif);
-    font-size:clamp(2rem,4vw,3rem);
+    font-size:clamp(1.8rem,3.5vw,2.8rem);
     font-weight:300;
     line-height:1.15;
     color:var(--offwhite);
     margin-bottom:0.5rem;
   }
-  .page-title em{color:var(--gold);font-style:italic;}
+  .page-sub{
+    font-family:var(--sans);
+    font-size:0.9rem;
+    color:var(--text-mid);
+    line-height:1.75;
+    margin-bottom:0;
+    max-width:580px;
+  }
   .page-rule{
     width:100%;
     height:1px;
     background:var(--border-gold);
-    margin:1.5rem 0;
+    margin:1.8rem 0;
   }
 
-  /* BOOKING CARDS */
-  .booking-section{
-    display:flex;
-    flex-direction:column;
+  /* CARDS GRID */
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
     align-items:stretch;
-  }
-  .booking-grid{
-    display:flex;
-    flex-direction:column;
     gap:1.5rem;
-    width:100%;
-    margin-bottom:2.5rem;
+    margin-bottom:3rem;
   }
-  .booking-card{
-    display:block;
-    text-decoration:none;
+  .cards-grid > .lane-card{
+    height:100%;
+  }
+
+  /* LANE CARD */
+  .lane-card{
     background:var(--navy2);
     border:1px solid var(--border-gold);
-    padding:2rem 2.2rem;
+    display:flex;
+    flex-direction:column;
+    transition:border-color 0.3s;
     position:relative;
     overflow:hidden;
-    transition:border-color 0.3s, transform 0.3s;
-    text-align:left;
   }
-  .booking-card:hover{
-    border-color:var(--gold);
-    transform:translateY(-2px);
-  }
-  .booking-card::before{
+  .lane-card::before{
     content:'';
     position:absolute;
     top:0;left:0;
-    width:3px;height:0;
+    width:100%;height:3px;
     background:var(--gold);
-    transition:height 0.4s;
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.35s;
   }
-  .booking-card:hover::before{height:100%;}
-  .booking-duration{
+  .lane-card:hover{border-color:var(--gold);}
+  .lane-card:hover::before{transform:scaleX(1);}
+  .lane-card--quiet{
+    border-color:rgba(201,168,76,0.2);
+    opacity:0.88;
+  }
+  .lane-card--quiet:hover{
+    border-color:var(--border-gold);
+    opacity:1;
+  }
+  .lane-card--quiet::before{background:rgba(201,168,76,0.5);}
+
+  .card-header{
+    padding:1.8rem 1.8rem 1.2rem;
+    border-bottom:1px solid var(--border-gold);
+    min-height:13rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+  .card-duration{
     font-family:var(--sans);
-    font-size:0.68rem;
+    font-size:0.65rem;
     letter-spacing:0.22em;
     text-transform:uppercase;
     color:var(--gold);
     font-weight:500;
-    margin-bottom:0.6rem;
-    opacity:0.85;
+    margin-bottom:0.5rem;
   }
-  .booking-title{
+  .card-title{
     font-family:var(--serif);
-    font-size:1.5rem;
+    font-size:1.2rem;
     font-weight:400;
     color:var(--offwhite);
-    margin-bottom:0.6rem;
-    line-height:1.2;
+    line-height:1.25;
+    margin-bottom:0.5rem;
   }
-  .booking-desc{
+  .card-promise{
     font-family:var(--sans);
-    font-size:0.85rem;
+    font-size:0.8rem;
     color:var(--text-mid);
-    line-height:1.75;
+    line-height:1.7;
     font-weight:400;
-    margin-bottom:1.2rem;
   }
-  .booking-cta{
+
+  /* INTAKE FORM */
+  .card-intake{
+    padding:1.5rem 1.8rem;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:1.1rem;
+  }
+  .intake-intro{
     font-family:var(--sans);
+    font-size:0.78rem;
+    color:var(--text-light);
+    line-height:1.65;
+    font-style:italic;
+  }
+  .intake-field{
+    display:flex;
+    flex-direction:column;
+    gap:0.4rem;
+  }
+  .intake-label{
+    font-family:var(--sans);
+    font-size:0.72rem;
+    color:var(--text-light);
+    font-weight:500;
+    letter-spacing:0.04em;
+  }
+  .intake-label .optional{
+    font-weight:400;
+    color:var(--text-muted);
+    font-style:italic;
+  }
+  .intake-select,
+  .intake-input{
+    font-family:var(--sans);
+    font-size:0.82rem;
+    color:var(--offwhite);
+    background:rgba(10,22,40,0.6);
+    border:1px solid rgba(201,168,76,0.3);
+    padding:0.55rem 0.75rem;
+    width:100%;
+    appearance:none;
+    -webkit-appearance:none;
+    transition:border-color 0.2s;
+    line-height:1.4;
+  }
+  .intake-select:focus,
+  .intake-input:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .intake-select option{background:var(--navy2);color:var(--offwhite);}
+  .select-wrap{position:relative;}
+  .select-wrap::after{
+    content:'▾';
+    position:absolute;
+    right:0.75rem;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
     font-size:0.75rem;
+    pointer-events:none;
+  }
+
+  /* CARD FOOTER */
+  .card-footer{
+    padding:1.2rem 1.8rem 1.8rem;
+    border-top:1px solid var(--border-gold);
+    margin-top:auto;
+  }
+  .card-book-btn{
+    display:block;
+    width:100%;
+    padding:0.75rem 1rem;
+    background:transparent;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    font-family:var(--sans);
+    font-size:0.72rem;
+    font-weight:500;
     letter-spacing:0.14em;
     text-transform:uppercase;
-    color:var(--gold);
-    display:flex;
-    align-items:center;
-    gap:0.5rem;
-    font-weight:500;
-    margin-top:1.5rem;
+    text-align:center;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background 0.25s,color 0.25s;
   }
-  .booking-card:hover .booking-cta{opacity:0.8;}
+  .card-book-btn:hover{background:var(--gold);color:var(--navy);}
+  .card-book-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  .confirm-note{
+    font-family:var(--sans);
+    font-size:0.75rem;
+    color:var(--text-muted);
+    line-height:1.7;
+    margin-top:0.9rem;
+    padding-top:0.9rem;
+    border-top:1px solid rgba(201,168,76,0.15);
+    display:none;
+  }
+  .confirm-note.visible{display:block;}
 
   /* FOOTER */
   footer{
-    margin-top:2rem;
+    margin-top:1rem;
     width:100%;
-    max-width:680px;
+    max-width:900px;
     position:relative;
     z-index:1;
   }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1rem;
+    margin-bottom:1rem;
+  }
+  .footer-brand{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .footer-copy{font-family:var(--sans);font-size:0.7rem;color:var(--text-muted);}
+  .footer-disclosure{
+    font-family:var(--sans);
+    font-size:0.68rem;
+    color:var(--text-muted);
+    line-height:1.7;
+    border-top:1px solid rgba(201,168,76,0.12);
+    padding-top:1rem;
+  }
 
-  @media(max-width:600px){
+  /* RESPONSIVE */
+  @media(max-width:820px){
+    .cards-grid{grid-template-columns:1fr;}
     nav{padding:1rem 1.5rem;}
-    .booking-section{height:auto;}
+  }
+  @media(max-width:480px){
+    body{padding:2rem 1rem 3rem;}
+    main{margin-top:5rem;}
+    .page-title{font-size:1.6rem;}
+  }
+  @media(max-width:375px){
+    .card-title{font-size:1.05rem;}
+    .card-book-btn{font-size:0.67rem;letter-spacing:0.1em;}
+    .intake-intro{font-size:0.74rem;}
   }
 </style>
+<script>
+// ─── TRANSLATIONS ───────────────────────────────────────────────────────────
+const T = {
+  en: {
+    page_title: "Connect With Luis · Live. Build. Prosper. LLC",
+    page_desc:  "Schedule a conversation with Luis Andres Ixta — tax strategy, business exits, and retirement for business owners and high earners.",
+    nav_back:   "← Back to site",
+    eyebrow:    "Schedule a Conversation",
+    heading:    "Let's find the right conversation.",
+    subhead:    "Choose what best describes you, and you'll see a time that fits.",
+
+    // Card 1 — Business Owners
+    c1_duration: "15 Minutes",
+    c1_title:    "Business Owners & High-Income Professionals",
+    c1_promise:  "Understand how your income, taxes, and long-term plans fit together.",
+    c1_intro:    "A few quick questions so our 15 minutes are as useful as possible. Your answers are only used to prepare for our call.",
+    c1_q1_label: "Which best describes you?",
+    c1_q1_ph:    "Select one",
+    c1_q1_o1:    "Business owner",
+    c1_q1_o2:    "W-2 professional",
+    c1_q1_o3:    "Both",
+    c1_q2_label: "Approximate annual income or business revenue?",
+    c1_q2_ph:    "Select a range",
+    c1_q2_o1:    "Under $350K",
+    c1_q2_o2:    "$350K–$750K",
+    c1_q2_o3:    "$750K–$2M",
+    c1_q2_o4:    "$2M+",
+    c1_q3_label: "Do you currently work with a CPA or tax professional?",
+    c1_q3_ph:    "Select one",
+    c1_q3_o1:    "Yes",
+    c1_q3_o2:    "No",
+    c1_q3_o3:    "Not sure",
+    c1_q4_label: "What prompted you to reach out?",
+    c1_q4_ph:    "Optional",
+    c1_btn:      "Schedule →",
+    c1_confirm:  "You're confirmed. We'll spend 15 minutes on where you are and whether there's a fit. No preparation needed and no pitch. If it makes sense to continue, the next step is a longer strategy session.",
+
+    // Card 2 — CPAs
+    c2_duration: "15 Minutes",
+    c2_title:    "CPAs & Advisors",
+    c2_promise:  "Explore how we can work together.",
+    c2_intro:    "Thanks for your interest. A few details help me make the call relevant to you.",
+    c2_q1_label: "Name of your firm and your role",
+    c2_q1_ph:    "e.g. Smith CPA · Senior Manager",
+    c2_q2_label: "What kinds of clients do you mainly serve?",
+    c2_q2_ph:    "",
+    c2_q3_label: "What would you most like to learn from our conversation?",
+    c2_q3_ph:    "Optional",
+    c2_btn:      "Schedule →",
+    c2_confirm:  "You're confirmed. This is an education conversation about how we work alongside CPAs and advisors, with no obligation and no expectation of referrals either way. Come with questions.",
+
+    // Card 3 — Homeowners
+    c3_duration: "15 Minutes",
+    c3_title:    "Homeowners",
+    c3_promise:  "Learn about the Mortgage-Free Life program.",
+    c3_intro:    "A few quick questions to prepare for our call. Your answers are only used to prepare for it.",
+    c3_q1_label: "Do you own your primary residence?",
+    c3_q1_ph:    "Select one",
+    c3_q1_o1:    "Yes",
+    c3_q1_o2:    "No",
+    c3_q2_label: "Approximate remaining mortgage balance?",
+    c3_q2_ph:    "Select a range",
+    c3_q2_o1:    "Under $250K",
+    c3_q2_o2:    "$250K–$500K",
+    c3_q2_o3:    "$500K–$1M",
+    c3_q2_o4:    "$1M+",
+    c3_q3_label: "How did you hear about us?",
+    c3_q3_ph:    "",
+    c3_btn:      "Schedule →",
+    c3_confirm:  "You're confirmed. We'll spend 15 minutes on your situation and whether the program applies. The numbers are specific to your circumstances, so the call is mostly a conversation and a data review.",
+
+    disclosure_es: "",
+  },
+  es: {
+    page_title: "Conéctese con Luis · Live. Build. Prosper. LLC",
+    page_desc:  "Reserve una conversación con Luis Andres Ixta — estrategia fiscal, salida de negocios y jubilación para dueños de negocio y profesionales de altos ingresos.",
+    nav_back:   "← Regresar al sitio",
+    eyebrow:    "Programe una Conversación",
+    heading:    "Encontremos la conversación correcta.",
+    subhead:    "Elija lo que mejor lo describe y verá un horario disponible.",
+
+    // Card 1 — Business Owners (ES)
+    c1_duration: "15 Minutos",
+    c1_title:    "Dueños de Negocio y Profesionales de Altos Ingresos",
+    c1_promise:  "Entienda cómo sus ingresos, impuestos y planes a largo plazo encajan.",
+    c1_intro:    "Unas preguntas breves para que nuestros 15 minutos sean lo más útiles posible. Sus respuestas se usan únicamente para prepararnos para la llamada.",
+    c1_q1_label: "¿Cuál describe mejor su situación?",
+    c1_q1_ph:    "Seleccione una opción",
+    c1_q1_o1:    "Dueño de negocio",
+    c1_q1_o2:    "Profesional con empleo (W-2)",
+    c1_q1_o3:    "Ambos",
+    c1_q2_label: "¿Ingreso anual o ingresos del negocio aproximados?",
+    c1_q2_ph:    "Seleccione un rango",
+    c1_q2_o1:    "Menos de $350K",
+    c1_q2_o2:    "$350K–$750K",
+    c1_q2_o3:    "$750K–$2M",
+    c1_q2_o4:    "Más de $2M",
+    c1_q3_label: "¿Trabaja actualmente con un contador (CPA) o profesional de impuestos?",
+    c1_q3_ph:    "Seleccione una opción",
+    c1_q3_o1:    "Sí",
+    c1_q3_o2:    "No",
+    c1_q3_o3:    "No estoy seguro(a)",
+    c1_q4_label: "¿Qué le motivó a comunicarse con nosotros?",
+    c1_q4_ph:    "Opcional",
+    c1_btn:      "Programar →",
+    c1_confirm:  "Su cita está confirmada. Dedicaremos 15 minutos a conocer su situación y ver si hay compatibilidad. No necesita prepararse y no hay presión de venta. Si tiene sentido continuar, el siguiente paso es una sesión de estrategia más larga.",
+
+    // Card 2 — CPAs (ES keeps same URL, English label per spec)
+    c2_duration: "15 Minutos",
+    c2_title:    "Contadores (CPAs) y Asesores",
+    c2_promise:  "Exploremos cómo podemos trabajar juntos.",
+    c2_intro:    "Gracias por su interés. Algunos detalles me ayudan a hacer la llamada más relevante para usted.",
+    c2_q1_label: "Nombre de su firma y su rol",
+    c2_q1_ph:    "p.ej. Smith CPA · Gerente Senior",
+    c2_q2_label: "¿A qué tipo de clientes atiende principalmente?",
+    c2_q2_ph:    "",
+    c2_q3_label: "¿Qué le gustaría aprender de nuestra conversación?",
+    c2_q3_ph:    "Opcional",
+    c2_btn:      "Programar →",
+    c2_confirm:  "Su cita está confirmada. Esta es una conversación educativa sobre cómo trabajamos junto a CPAs y asesores, sin obligación y sin expectativa de referencias en ninguna dirección. Venga con preguntas.",
+
+    // Card 3 — Homeowners (ES)
+    c3_duration: "15 Minutos",
+    c3_title:    "Propietarios de Vivienda",
+    c3_promise:  "Conozca el programa Mortgage-Free Life.",
+    c3_intro:    "Unas preguntas breves para prepararnos para la llamada. Sus respuestas se usan únicamente para prepararla.",
+    c3_q1_label: "¿Es propietario de su residencia principal?",
+    c3_q1_ph:    "Seleccione una opción",
+    c3_q1_o1:    "Sí",
+    c3_q1_o2:    "No",
+    c3_q2_label: "¿Saldo restante aproximado de su hipoteca?",
+    c3_q2_ph:    "Seleccione un rango",
+    c3_q2_o1:    "Menos de $250K",
+    c3_q2_o2:    "$250K–$500K",
+    c3_q2_o3:    "$500K–$1M",
+    c3_q2_o4:    "Más de $1M",
+    c3_q3_label: "¿Cómo se enteró de nosotros?",
+    c3_q3_ph:    "",
+    c3_btn:      "Programar →",
+    c3_confirm:  "Su cita está confirmada. Dedicaremos 15 minutos a su situación y a determinar si el programa aplica. Los números son específicos a sus circunstancias, por lo que la llamada es principalmente una conversación y una revisión de datos.",
+
+    disclosure_es: "",
+  }
+};
+
+// ─── LANGUAGE DETECTION (runs before paint) ──────────────────────────────────
+(function(){
+  let lang = 'en';
+  const param = new URLSearchParams(window.location.search).get('lang');
+  if(param === 'en' || param === 'es'){ lang = param; }
+  else {
+    try { const stored = localStorage.getItem('lbp_lang'); if(stored === 'en' || stored === 'es') lang = stored; } catch(e){}
+    if(!param && !localStorage.getItem('lbp_lang')){
+      if(navigator.language && navigator.language.toLowerCase().startsWith('es')) lang = 'es';
+    }
+  }
+  document.documentElement.lang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+})();
+</script>
 </head>
 <body>
 
 <nav>
   <a href="/" class="nav-brand">Live. Build. Prosper. LLC</a>
-  <a href="/" class="nav-back">Back to site</a>
+  <div class="nav-right">
+    <a href="/" class="nav-back" data-i18n="nav_back">← Back to site</a>
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn" id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-es" aria-pressed="false" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
 </nav>
 
 <main>
-  <p class="page-eyebrow">Schedule a Conversation</p>
-  <h1 class="page-title">Connect With <em>Luis</em></h1>
+  <p class="page-eyebrow" data-i18n="eyebrow">Schedule a Conversation</p>
+  <h1 class="page-title" data-i18n="heading">Let's find the right conversation.</h1>
+  <p class="page-sub" data-i18n="subhead">Choose what best describes you, and you'll see a time that fits.</p>
   <div class="page-rule"></div>
 
-  <div class="booking-section">
-    <div class="booking-grid">
+  <div class="cards-grid">
 
-      <a href="https://calendar.app.google/muBBixVnXTbsSbe78" target="_blank" class="booking-card">
-        <p class="booking-duration">15 Minutes</p>
-        <h2 class="booking-title">Quick Connect</h2>
-        <p class="booking-desc">A focused intro call to understand your current situation and if there's a fit. The primary goal is to get clarity on where you are and what we can do to help.</p>
-        <span class="booking-cta">Book This Session →</span>
-      </a>
-
-      <a href="https://calendar.app.google/muBBixVnXTbsSbe78" target="_blank" class="booking-card">
-        <p class="booking-duration">15 Minutos</p>
-        <h2 class="booking-title">Conversación Inicial</h2>
-        <p class="booking-desc">Una llamada enfocada para entender su situación actual y si hay compatibilidad. El objetivo principal es tener claridad sobre dónde está usted y lo que podemos hacer para ayudarle.</p>
-        <span class="booking-cta">Reserve su Llamada →</span>
-      </a>
-
+    <!-- ── CARD 1: BUSINESS OWNERS ── -->
+    <div class="lane-card">
+      <div class="card-header">
+        <p class="card-duration" data-i18n="c1_duration">15 Minutes</p>
+        <h2 class="card-title" data-i18n="c1_title">Business Owners &amp; High-Income Professionals</h2>
+        <p class="card-promise" data-i18n="c1_promise">Understand how your income, taxes, and long-term plans fit together.</p>
+      </div>
+      <div class="card-intake">
+        <p class="intake-intro" data-i18n="c1_intro">A few quick questions so our 15 minutes are as useful as possible. Your answers are only used to prepare for our call.</p>
+        <div class="intake-field">
+          <label class="intake-label" for="c1q1" data-i18n="c1_q1_label">Which best describes you?</label>
+          <div class="select-wrap">
+            <select class="intake-select" id="c1q1">
+              <option value="" data-i18n="c1_q1_ph">Select one</option>
+              <option value="owner" data-i18n="c1_q1_o1">Business owner</option>
+              <option value="w2" data-i18n="c1_q1_o2">W-2 professional</option>
+              <option value="both" data-i18n="c1_q1_o3">Both</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c1q2" data-i18n="c1_q2_label">Approximate annual income or business revenue?</label>
+          <div class="select-wrap">
+            <select class="intake-select" id="c1q2">
+              <option value="" data-i18n="c1_q2_ph">Select a range</option>
+              <option value="u350" data-i18n="c1_q2_o1">Under $350K</option>
+              <option value="350-750" data-i18n="c1_q2_o2">$350K–$750K</option>
+              <option value="750-2m" data-i18n="c1_q2_o3">$750K–$2M</option>
+              <option value="2m+" data-i18n="c1_q2_o4">$2M+</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c1q3" data-i18n="c1_q3_label">Do you currently work with a CPA or tax professional?</label>
+          <div class="select-wrap">
+            <select class="intake-select" id="c1q3">
+              <option value="" data-i18n="c1_q3_ph">Select one</option>
+              <option value="yes" data-i18n="c1_q3_o1">Yes</option>
+              <option value="no" data-i18n="c1_q3_o2">No</option>
+              <option value="notsure" data-i18n="c1_q3_o3">Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c1q4"><span data-i18n="c1_q4_label">What prompted you to reach out?</span> <span class="optional">(optional)</span></label>
+          <input class="intake-input" id="c1q4" type="text" data-i18n-placeholder="c1_q4_ph" placeholder="Optional"/>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="card-book-btn" id="c1-btn" data-i18n="c1_btn" onclick="bookOwner()">Schedule →</button>
+        <p class="confirm-note" id="c1-confirm" data-i18n="c1_confirm">You're confirmed. We'll spend 15 minutes on where you are and whether there's a fit. No preparation needed and no pitch. If it makes sense to continue, the next step is a longer strategy session.</p>
+      </div>
     </div>
-  </div>
-  <div class="page-rule" style="margin-top:0;"></div>
+
+    <!-- ── CARD 2: CPAs & ADVISORS ── -->
+    <div class="lane-card">
+      <div class="card-header">
+        <p class="card-duration" data-i18n="c2_duration">15 Minutes</p>
+        <h2 class="card-title" data-i18n="c2_title">CPAs &amp; Advisors</h2>
+        <p class="card-promise" data-i18n="c2_promise">Explore how we can work together.</p>
+      </div>
+      <div class="card-intake">
+        <p class="intake-intro" data-i18n="c2_intro">Thanks for your interest. A few details help me make the call relevant to you.</p>
+        <div class="intake-field">
+          <label class="intake-label" for="c2q1" data-i18n="c2_q1_label">Name of your firm and your role</label>
+          <input class="intake-input" id="c2q1" type="text" data-i18n-placeholder="c2_q1_ph" placeholder="e.g. Smith CPA · Senior Manager"/>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c2q2" data-i18n="c2_q2_label">What kinds of clients do you mainly serve?</label>
+          <input class="intake-input" id="c2q2" type="text" placeholder=""/>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c2q3"><span data-i18n="c2_q3_label">What would you most like to learn from our conversation?</span> <span class="optional">(optional)</span></label>
+          <input class="intake-input" id="c2q3" type="text" data-i18n-placeholder="c2_q3_ph" placeholder="Optional"/>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="card-book-btn" id="c2-btn" data-i18n="c2_btn" onclick="bookCPA()">Schedule →</button>
+        <p class="confirm-note" id="c2-confirm" data-i18n="c2_confirm">You're confirmed. This is an education conversation about how we work alongside CPAs and advisors, with no obligation and no expectation of referrals either way. Come with questions.</p>
+      </div>
+    </div>
+
+    <!-- ── CARD 3: HOMEOWNERS (quiet) ── -->
+    <div class="lane-card lane-card--quiet">
+      <div class="card-header">
+        <p class="card-duration" data-i18n="c3_duration">15 Minutes</p>
+        <h2 class="card-title" data-i18n="c3_title">Homeowners</h2>
+        <p class="card-promise" data-i18n="c3_promise">Learn about our mortgage payoff program.</p>
+      </div>
+      <div class="card-intake">
+        <p class="intake-intro" data-i18n="c3_intro">A few quick questions to prepare for our call. Your answers are only used to prepare for it.</p>
+        <div class="intake-field">
+          <label class="intake-label" for="c3q1" data-i18n="c3_q1_label">Do you own your primary residence?</label>
+          <div class="select-wrap">
+            <select class="intake-select" id="c3q1">
+              <option value="" data-i18n="c3_q1_ph">Select one</option>
+              <option value="yes" data-i18n="c3_q1_o1">Yes</option>
+              <option value="no" data-i18n="c3_q1_o2">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c3q2" data-i18n="c3_q2_label">Approximate remaining mortgage balance?</label>
+          <div class="select-wrap">
+            <select class="intake-select" id="c3q2">
+              <option value="" data-i18n="c3_q2_ph">Select a range</option>
+              <option value="u250" data-i18n="c3_q2_o1">Under $250K</option>
+              <option value="250-500" data-i18n="c3_q2_o2">$250K–$500K</option>
+              <option value="500-1m" data-i18n="c3_q2_o3">$500K–$1M</option>
+              <option value="1m+" data-i18n="c3_q2_o4">$1M+</option>
+            </select>
+          </div>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="c3q3" data-i18n="c3_q3_label">How did you hear about us?</label>
+          <input class="intake-input" id="c3q3" type="text" placeholder=""/>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="card-book-btn" id="c3-btn" data-i18n="c3_btn" onclick="bookHomeowner()">Schedule →</button>
+        <p class="confirm-note" id="c3-confirm" data-i18n="c3_confirm">You're confirmed. We'll spend 15 minutes on your situation and whether the program applies. The numbers are specific to your circumstances, so the call is mostly a conversation and a data review.</p>
+      </div>
+    </div>
+
+  </div><!-- /cards-grid -->
 </main>
 
-<footer></footer>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Live. Build. Prosper. LLC</span>
+    <span class="footer-copy">© 2026 Live. Build. Prosper. LLC · All rights reserved</span>
+  </div>
+  <p class="footer-disclosure" id="footer-disclosure">Live. Build. Prosper. LLC provides education and consulting on tax mitigation strategies. We do not provide tax, legal, accounting, or investment advice, are not a CPA firm, and do not prepare or file tax returns. Strategies are reviewed with your own tax and legal professionals and, where applicable, implemented through a network of independent licensed professionals. Insurance products are offered through licensed insurance agents. CA License #4251449 · NPN #20526259. Content on this site is for educational purposes only. Examples shown are anonymized and illustrative; results are not guaranteed and will vary based on individual circumstances.</p>
+</footer>
 
+<script>
+// ─── APPLY TRANSLATIONS ───────────────────────────────────────────────────────
+function applyLang(lang){
+  const t = T[lang];
+  if(!t) return;
+
+  // html lang + meta
+  document.documentElement.lang = lang;
+  document.title = t.page_title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc) metaDesc.setAttribute('content', t.page_desc);
+
+  // text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(t[key] !== undefined) el.setAttribute('placeholder', t[key]);
+  });
+
+  // swap booking URLs
+  document.querySelectorAll('[data-url-en]').forEach(el => {
+    el.href = lang === 'es' ? el.getAttribute('data-url-es') : el.getAttribute('data-url-en');
+  });
+
+  // disclosure: use ES version if filled in, else keep English
+  const disc = document.getElementById('footer-disclosure');
+  if(disc && lang === 'es' && t.disclosure_es){
+    disc.textContent = t.disclosure_es;
+  } else if(disc && lang === 'en'){
+    disc.textContent = T.en.page_desc; // reset handled below
+  }
+
+  // toggle buttons
+  document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+  document.getElementById('btn-es').setAttribute('aria-pressed', lang === 'es' ? 'true' : 'false');
+
+  // persist
+  try { localStorage.setItem('lbp_lang', lang); } catch(e){}
+}
+
+function setLang(lang){
+  applyLang(lang);
+}
+
+// ─── TAX STRATEGY BOOKING ────────────────────────────────────────────────────
+const OWNER_URL = "https://calendar.app.google/3LPomzbpTqHFgvQH8";
+
+function bookOwner(){
+  const role    = document.getElementById('c1q1').value;
+  const income  = document.getElementById('c1q2').value;
+  const cpa     = document.getElementById('c1q3').value;
+  const prompt  = document.getElementById('c1q4').value.trim();
+
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  const t = T[lang];
+
+  const roleMap   = { owner: t.c1_q1_o1, w2: t.c1_q1_o2, both: t.c1_q1_o3, '': '—' };
+  const incMap    = { u350: t.c1_q2_o1, '350-750': t.c1_q2_o2, '750-2m': t.c1_q2_o3, '2m+': t.c1_q2_o4, '': '—' };
+  const cpaMap    = { yes: t.c1_q3_o1, no: t.c1_q3_o2, notsure: t.c1_q3_o3, '': '—' };
+
+  const notes = [
+    'Type: '    + (roleMap[role]  || role   || '—'),
+    'Income: '  + (incMap[income] || income || '—'),
+    'Has CPA: ' + (cpaMap[cpa]   || cpa    || '—'),
+    'Prompt: '  + (prompt || '—'),
+  ].join(' | ');
+
+  const url = OWNER_URL + '?notes=' + encodeURIComponent(notes);
+  window.open(url, '_blank');
+}
+
+// ─── CPA BOOKING ─────────────────────────────────────────────────────────────
+const CPA_URL = "https://calendar.app.google/U4NpXupni6oZQvk66";
+
+function bookCPA(){
+  const firm  = document.getElementById('c2q1').value.trim();
+  const clients = document.getElementById('c2q2').value.trim();
+  const learn = document.getElementById('c2q3').value.trim();
+
+  const notes = [
+    'Firm / Role: '    + (firm    || '—'),
+    'Client types: '   + (clients || '—'),
+    'Want to learn: '  + (learn   || '—'),
+  ].join(' | ');
+
+  const url = CPA_URL + '?notes=' + encodeURIComponent(notes);
+  window.open(url, '_blank');
+}
+
+// ─── HOMEOWNER BOOKING ───────────────────────────────────────────────────────
+const HOMEOWNER_URL = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ013q0MljqytdkzHo7CEf8ox0J_RchNXi-ou7r22ua_HXdNsK1WzDDHDynpDzz5jFqdaqzFyn5v";
+
+function bookHomeowner(){
+  const owns    = document.getElementById('c3q1').value;
+  const balance = document.getElementById('c3q2').value;
+  const referral= document.getElementById('c3q3').value.trim();
+
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  const t = T[lang];
+
+  // Build readable labels from select values
+  const ownsMap = { yes: t.c3_q1_o1, no: t.c3_q1_o2, '': '—' };
+  const balMap  = { u250: t.c3_q2_o1, '250-500': t.c3_q2_o2, '500-1m': t.c3_q2_o3, '1m+': t.c3_q2_o4, '': '—' };
+
+  const notes = [
+    'Owns primary residence: ' + (ownsMap[owns] || owns || '—'),
+    'Mortgage balance: '       + (balMap[balance] || balance || '—'),
+    'Referral: '               + (referral || '—'),
+  ].join(' | ');
+
+  const url = HOMEOWNER_URL + '?notes=' + encodeURIComponent(notes);
+  window.open(url, '_blank');
+}
+
+// Run on load using the lang already set on <html>
+document.addEventListener('DOMContentLoaded', function(){
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  applyLang(lang);
+
+  // Restore the verbatim English disclosure regardless of language swap above
+  const disc = document.getElementById('footer-disclosure');
+  const englishDisclosure = "Live. Build. Prosper. LLC provides education and consulting on tax mitigation strategies. We do not provide tax, legal, accounting, or investment advice, are not a CPA firm, and do not prepare or file tax returns. Strategies are reviewed with your own tax and legal professionals and, where applicable, implemented through a network of independent licensed professionals. Insurance products are offered through licensed insurance agents. CA License #4251449 · NPN #20526259. Content on this site is for educational purposes only. Examples shown are anonymized and illustrative; results are not guaranteed and will vary based on individual circumstances.";
+  if(disc){
+    if(lang === 'es' && T.es.disclosure_es){
+      disc.textContent = T.es.disclosure_es;
+    } else {
+      disc.textContent = englishDisclosure;
+    }
+  }
+});
+</script>
 </body>
 </html>
