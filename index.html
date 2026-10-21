@@ -45,7 +45,7 @@
   .section-accent::after{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:radial-gradient(ellipse at 85% 30%,rgba(201,168,76,0.04) 0%,transparent 65%);pointer-events:none;}
 
   /* LABELS */
-  .section-eyebrow{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;opacity:0.9;font-weight:500;}
+  .section-eyebrow{font-family:var(--sans);font-size:0.85rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500;}
   .section-title{font-family:var(--serif);font-size:clamp(2rem,3.2vw,2.85rem);font-weight:300;line-height:1.15;color:var(--offwhite);margin-bottom:1.5rem;white-space:nowrap;}
   .section-title em{color:var(--gold);font-style:italic;}
   .section-rule{width:100%;height:1px;background:var(--border-gold);margin-bottom:2.5rem;}
@@ -58,7 +58,7 @@
   .hero-title{font-family:var(--serif);font-size:clamp(2.05rem,3.85vw,3.42rem);font-weight:300;line-height:1.1;color:var(--offwhite);margin-bottom:0.5rem;}
   .hero-title em{color:var(--gold);font-style:italic;}
   .hero-brand{font-family:var(--serif);font-size:clamp(1.5rem,2.8vw,2.5rem);font-weight:300;letter-spacing:0.02em;color:var(--offwhite);margin-bottom:1.5rem;line-height:1.1;}
-  .hero-rule{width:100%;height:1px;background:var(--gold);opacity:0.45;margin:1.5rem 0;}
+  .hero-rule{width:100%;height:1px;background:var(--gold);margin:1.5rem 0;}
   .hero-sub{font-family:var(--sans);font-size:0.98rem;color:var(--text-mid);line-height:1.85;max-width:480px;margin-bottom:1.5rem;font-weight:400;}
   .hero-sub em{color:var(--offwhite);font-style:normal;font-weight:600;}
   .hero-proof{display:flex;gap:2.5rem;margin-bottom:2.5rem;padding:1.2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -80,7 +80,7 @@
   .service-card:hover{background:var(--charcoal);}
   .service-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.4s;}
   .service-card:hover::after{width:100%;}
-  .service-num{font-family:var(--sans);font-size:1.1rem;letter-spacing:0.22em;color:var(--gold);opacity:0.8;margin-bottom:1.2rem;font-weight:600;}
+  .service-num{font-family:var(--sans);font-size:1.1rem;letter-spacing:0.22em;color:var(--gold);margin-bottom:1.2rem;font-weight:600;}
   .service-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--offwhite);margin-bottom:1rem;line-height:1.2;min-height:3.6rem;}
   .service-desc{font-family:var(--sans);font-size:0.87rem;color:var(--text-mid);line-height:1.85;margin-bottom:1.8rem;font-weight:400;}
   .service-list{list-style:none;}
@@ -88,12 +88,34 @@
   .service-list li:last-child{border-bottom:none;}
   .service-list li::before{content:'—';position:absolute;left:0;color:var(--gold);}
 
+  /* SERVICES NARRATIVE */
+  .services-narrative{max-width:780px;}
+  .services-narrative p{font-family:var(--sans);font-size:0.95rem;color:var(--text-mid);line-height:1.9;font-weight:400;margin-bottom:1.4rem;}
+  .services-narrative p:last-child{margin-bottom:0;}
+  .services-narrative strong{color:var(--offwhite);font-weight:600;}
+
+  /* WHY I DO THIS */
+  #why{background:var(--navy3);border-bottom:1px solid var(--border-gold);}
+  .why-inner{max-width:720px;}
+  .why-body{font-family:var(--sans);font-size:0.95rem;color:var(--text-mid);line-height:1.9;font-weight:400;}
+  .why-body p+p{margin-top:1.2rem;}
+  .why-placeholder{border:1px dashed var(--border-gold);padding:2.5rem;margin-top:2rem;font-family:var(--sans);font-size:0.82rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;}
+
+  /* CPAs & ADVISORS */
+  #advisors{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
+  .advisors-inner{max-width:780px;}
+  .advisors-body{font-family:var(--sans);font-size:0.95rem;color:var(--text-mid);line-height:1.9;font-weight:400;}
+  .advisors-body p{margin-bottom:1.4rem;}
+  .advisors-body p:last-child{margin-bottom:0;}
+  .advisors-body strong{color:var(--offwhite);font-weight:600;}
+  .advisors-cta{margin-top:2.5rem;}
+
   /* WHO I WORK WITH */
   #who{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
-  .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-gold);margin-top:3rem;}
+  .who-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border-gold);margin-top:3rem;}
   .who-card{background:var(--navy2);padding:2.5rem 2.5rem;transition:background 0.3s;}
   .who-card:hover{background:var(--navy3);}
-  .who-card-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--gold);margin-bottom:0.8rem;}
+  .who-card-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--gold);margin-bottom:0.8rem;min-height:3.2rem;display:flex;align-items:flex-end;}
   .who-card-desc{font-family:var(--sans);font-size:0.88rem;color:var(--text-mid);line-height:1.85;font-weight:400;}
   .who-card-desc em{color:var(--offwhite);font-style:normal;font-weight:600;}
 
@@ -101,7 +123,7 @@
   #process{background:var(--navy2);border-bottom:1px solid var(--border-gold);}
   .process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-gold);margin-top:3rem;}
   .step{background:var(--navy2);padding:2.5rem 2rem;position:relative;}
-  .step-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold);opacity:0.45;line-height:1;margin-bottom:1rem;}
+  .step-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:1rem;}
   .step-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--offwhite);margin-bottom:0.8rem;}
   .step-desc{font-family:var(--sans);font-size:0.87rem;color:var(--text-mid);line-height:1.85;font-weight:400;}
 
@@ -120,6 +142,7 @@
   .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
   .footer-brand{font-family:var(--sans);font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);font-weight:500;}
   .footer-copy{font-family:var(--sans);font-size:0.7rem;color:var(--text-muted);}
+  .footer-disclosure{font-family:var(--sans);font-size:0.68rem;color:var(--text-muted);line-height:1.7;max-width:1100px;margin:1.5rem auto 0;padding-left:2rem;}
   .footer-link{font-family:var(--sans);font-size:0.7rem;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
   .footer-link:hover{color:var(--gold);}
 
@@ -133,7 +156,7 @@
     .hero-inner{grid-template-columns:1fr;}
     .hero-image-wrap{display:none;}
     .hero-proof{flex-wrap:wrap;gap:1.5rem;}
-    .services-grid,.who-grid,.process-steps{grid-template-columns:1fr;}
+    .services-grid,.who-grid,.process-steps{grid-template-columns:1fr;grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr;gap:2rem;}
     .contact-photo{max-width:220px;aspect-ratio:3/4;margin:0 auto;}
     .footer-inner{flex-direction:column;gap:1rem;text-align:center;}
@@ -148,6 +171,7 @@
     <li><a href="#who">Who I Work With</a></li>
     <li><a href="#services">What I Do</a></li>
     <li><a href="#process">How I Work</a></li>
+    <li><a href="#advisors">For CPAs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -171,6 +195,7 @@
   </div>
 </section>
 
+
 <section id="who" class="section-accent">
   <div class="container">
     <p class="section-eyebrow">Who I Work With</p>
@@ -179,19 +204,11 @@
     <div class="who-grid">
       <div class="who-card">
         <h3 class="who-card-title">High-Income Earners</h3>
-        <p class="who-card-desc">You're earning well at your W-2, but each year a significant portion is still leaving in the form of a check come tax season. Many high earners in your position are told the options are limited. We have solutions to help reduce what goes out.</p>
+        <p class="who-card-desc">You've put in the work, earned the promotions, and climbed the ladder. Come tax season, you write the check that takes the air out of your raise. You assume that's simply the cost of earning well. Your CPA is doing their job, but you wonder if anyone is looking at the bigger picture: how your income, taxes, and long-term wealth fit together.</p>
       </div>
       <div class="who-card">
         <h3 class="who-card-title">Business Owners</h3>
-        <p class="who-card-desc">The revenue grew, the business scaled, now you need a way to keep more of the profits your business produces. Through reducing your tax bill or retaining more capital, there are ways to keep and utilize your income more effectively.</p>
-      </div>
-      <div class="who-card">
-        <h3 class="who-card-title">Homeowners Ready to Act</h3>
-        <p class="who-card-desc">You have a mortgage and you've been told to just keep paying it for 30 years. There's a better way — one that saves six figures in interest and builds equity dramatically faster. Most people don't know it exists.</p>
-      </div>
-      <div class="who-card">
-        <h3 class="who-card-title">Professionals & Advisors</h3>
-        <p class="who-card-desc">Professionals that are open to explore strategies beyond the traditional deductions and depreciation methods in order to provide additional value to their clients.</p>
+        <p class="who-card-desc">This has been your best year by far. Revenue is up, the team is stable, and for the first time the business feels like it's running smoothly. Then the tax estimates arrive, and your best performance results in the biggest check to the IRS. You assume that's how it goes, so you take the usual deductions and depreciation and move on. But it's worth asking whether anyone has looked at how the business, your taxes, and your long-term plans fit together.</p>
       </div>
     </div>
   </div>
@@ -203,41 +220,11 @@
     <p class="section-eyebrow">What I Do</p>
     <h2 class="section-title">Areas of Focus</h2>
     <div class="section-rule"></div>
-    <p class="services-intro">Taxes, debt, and retirement aren't separate problems.<br>They're the same problem at different stages.</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3 class="service-title">Tax Mitigation</h3>
-        <ul class="service-list">
-          <li>High-income W-2 strategies</li>
-          <li>Business owner tax planning</li>
-          <li>CPA & EA coordination</li>
-          <li>Year-round tax positioning</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <h3 class="service-title">Business Exits</h3>
-        <ul class="service-list">
-          <li>Exit strategy & timing</li>
-          <li>Tax-efficient transition planning</li>
-          <li>Post-exit wealth structure</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <h3 class="service-title">Retirement Optimization</h3>
-        <ul class="service-list">
-          <li>401(k) & IRA optimization</li>
-          <li>Tax-advantaged account structure</li>
-          <li>Long-term wealth building</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <h3 class="service-title">Mortgage Free Life</h3>
-        <ul class="service-list">
-          <li>Pay off in 5–7 years, not 30</li>
-          <li>Save six figures in interest</li>
-          <li>Create a tax-advantaged retirement</li>
-        </ul>
-      </div>
+    <div class="services-narrative">
+      <p>Many high earners and business owners lose more than they realize, not because they aren't earning enough, but because the strategy around their income hasn't kept up with what they've built. We focus on taxes, exits, and retirement because they aren't separate problems. They're the same problem at different stages.</p>
+      <p><strong style="color:var(--gold);">Tax mitigation</strong> is where most engagements start. We educate clients on strategies grounded in the existing tax code and coordinate them with your CPA before anything moves forward. Business owners and W-2 earners with roughly $350K+ in income or revenue are typically the best fit.</p>
+      <p><strong style="color:var(--gold);">Business exits</strong> reward early planning. The tax exposure on a sale or transition can be significant. It shapes how much you keep and can change which offers make sense. The earlier we start, the more options there are, but planning still matters after a deal closes. Whether you're preparing to sell or already have, we work through timing, structure, and next steps alongside your CPA and attorney.</p>
+      <p><strong style="color:var(--gold);">Retirement optimization</strong> is about structuring your accounts to be tax-efficient in retirement and aligned with your full financial picture. It runs alongside tax mitigation, not separate from it.</p>
     </div>
   </div>
 </section>
@@ -263,6 +250,26 @@
         <div class="step-num">03</div>
         <h3 class="step-title">Ongoing Partnership</h3>
         <p class="step-desc">We implement together and adjust as your situation evolves. You have a consistent point of contact who knows your full financial picture — not a call center.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CPAs & ADVISORS -->
+<section id="advisors" class="section-accent">
+  <div class="container">
+    <p class="section-eyebrow">Professionals</p>
+    <h2 class="section-title">For CPAs & Advisors</h2>
+    <div class="section-rule"></div>
+    <div class="advisors-inner">
+      <div class="advisors-body">
+        <p>Your clients ask about strategies you don't have time to evaluate.<br>We work alongside you, not around you.</p>
+        <p><strong style="color:var(--gold);">What we do:</strong> Education and analysis on tax mitigation strategies, reviewed with you before anything moves forward. You remain your client's advisor of record.</p>
+        <p><strong style="color:var(--gold);">What we don't do:</strong> We don't prepare taxes, file returns or replace your relationship. If a client has no tax professional, or chooses to change, we coordinate with licensed professionals in our network. We never ask a client to leave their CPA.</p>
+        <p><strong style="color:var(--gold);">Working together:</strong> When there's a good fit, we send clients in both directions. We also offer complimentary education sessions for professionals interested in collaborating.</p>
+      </div>
+      <div class="advisors-cta">
+        <a href="/connectwithluis.html" class="btn-primary">Schedule a call with Luis →</a>
       </div>
     </div>
   </div>
@@ -303,9 +310,9 @@
 <footer>
   <div class="footer-inner">
     <span class="footer-brand">Live. Build. Prosper. LLC</span>
-    <span class="footer-copy">© 2025 Luis Andres Ixta · All rights reserved</span>
-    <a href="https://luisandresixta.com" class="footer-link">luisandresixta.com →</a>
+    <span class="footer-copy">© 2026 Live. Build. Prosper. LLC · All rights reserved</span>
   </div>
+  <p class="footer-disclosure">Live. Build. Prosper. LLC provides education and consulting on tax mitigation strategies. We do not provide tax, legal, accounting, or investment advice, are not a CPA firm, and do not prepare or file tax returns. Strategies are reviewed with your own tax and legal professionals and, where applicable, implemented through a network of independent licensed professionals. Insurance products are offered through licensed insurance agents. CA License #4251449 · NPN #20526259. Content on this site is for educational purposes only. Examples shown are anonymized and illustrative; results are not guaranteed and will vary based on individual circumstances.</p>
 </footer>
 
 </body>
