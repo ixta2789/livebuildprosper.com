@@ -871,7 +871,7 @@ function bookOwner(){
     'Prompt: '  + (prompt || '—'),
   ].join(' | ');
 
-  const url = OWNER_URL + '?notes=' + encodeURIComponent(notes);
+  const url = OWNER_URL + '?details=' + encodeURIComponent(notes);
   window.open(url, '_blank');
 }
 
@@ -896,7 +896,7 @@ function bookCPA(){
     'Want to learn: '  + (learn   || '—'),
   ].join(' | ');
 
-  const url = CPA_URL + '?notes=' + encodeURIComponent(notes);
+  const url = CPA_URL + '?details=' + encodeURIComponent(notes);
   window.open(url, '_blank');
 }
 
@@ -927,7 +927,7 @@ function bookHomeowner(){
     'Referral: '               + (referral || '—'),
   ].join(' | ');
 
-  const url = HOMEOWNER_URL + '?notes=' + encodeURIComponent(notes);
+  const url = HOMEOWNER_URL + '?details=' + encodeURIComponent(notes);
   window.open(url, '_blank');
 }
 
